@@ -124,7 +124,7 @@
       (if (string= major-mode
                    "c++-mode")
           (c-indent-new-comment-line)
-        (newline))
+        (indent-new-comment-line))
       (fill-to-col ?- line-length))))
 
 
