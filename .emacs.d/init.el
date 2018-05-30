@@ -48,6 +48,7 @@
 ;; Add backtab (Shift + tab) as the custom function "remove tab"
 (global-set-key (kbd "<backtab>") 'remove-tab)
 (global-set-key (kbd "M-g C-g") 'goto-column)
+(global-set-key (kbd "C-c u") 'underline-line)
 ;; Bind M-j to join next line with current one
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 
