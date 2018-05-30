@@ -121,7 +121,10 @@
   (save-excursion
     (end-of-line)
     (let ((line-length (current-column)))
-      (newline)
+      (if (string= major-mode
+                   "c++-mode")
+          (c-indent-new-comment-line)
+        (newline))
       (fill-to-col ?- line-length))))
 
 
