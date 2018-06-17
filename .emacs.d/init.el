@@ -44,9 +44,10 @@
 (setq-default c-default-style "custom-c-code-style")
 ;; Associate .inl files with c++ mode
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
-;; Add relative indentation (line-up) with C-tab
+
+;; Custom keybindings
+;; ------------------
 (global-set-key (kbd "C-<tab>") 'indent-relative)
-;; Add backtab (Shift + tab) as the custom function "remove tab"
 (global-set-key (kbd "<backtab>") 'remove-tab)
 (global-set-key (kbd "M-g C-g") 'goto-column)
 (global-set-key (kbd "C-c u") 'underline-line)
