@@ -16,6 +16,7 @@
 (require 'whitespace)
 (require 'vdiff)
 (require 'custom-lisp-functions)
+(require 'python)
 
 ;; Default settings
 ;; ----------------
@@ -53,7 +54,6 @@
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 
 
-; TODO
 ;; Major mode hooks
 ;; ================
 ;; C/C++ mode
@@ -105,7 +105,13 @@
             (show-paren-mode 1)
             ))
 
-;; TODO add mode hooks
+;; Shell mode
+;; ----------
+(add-hook 'shell-mode-hook
+          (lambda() (add-hook
+                     'comint-output-filter-functions
+                     'python-pdbtrack-comint-output-filter-function t)))
+
 
 ;; Other hooks
 ;; ===========
