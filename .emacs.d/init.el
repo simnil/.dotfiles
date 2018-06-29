@@ -17,6 +17,8 @@
 (require 'vdiff)
 (require 'custom-lisp-functions)
 (require 'python)
+(require 'server)
+
 
 ;; Default settings
 ;; ----------------
@@ -123,6 +125,12 @@
 ;;           (lambda()
 ;;             (electric-indent-mode -1)))
 
+
+;; Start emacsclient server
+;; To allow opening files in a running emacs session
+(if (and (fboundp 'server-running-p)
+         (not (server-running-p)))
+      (server-start))
 
 
 ;; Automatically generated code telling emacs to "trust" certain themes
