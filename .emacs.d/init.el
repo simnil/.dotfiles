@@ -31,6 +31,8 @@
 (setq-default fill-column 80)
 (setq-default column-number-mode t)
 (setq-default vdiff-auto-refine t)
+(setq-default ring-bell-function 'ignore)
+(tool-bar-mode -1)
 ;; Activate vdiff shortcuts
 (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
 ;; C/C++ indentation and code style
