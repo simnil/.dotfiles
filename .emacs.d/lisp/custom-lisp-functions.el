@@ -118,7 +118,7 @@
 (defun underline-line ()
   "Inserts a line below the current one, underlining it with '-' characters"
   (interactive)
-  (save-excursion
+  (progn
     (end-of-line)
     (let ((line-length (current-column)))
       (if (string= major-mode
