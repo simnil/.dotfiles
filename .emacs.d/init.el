@@ -83,8 +83,8 @@
 ;; ----------
 (add-hook 'cmake-mode-hook
           (lambda ()
-            (setq tab-width 4)
-            (setq indent-tabs-mode t)
+            (setq cmake-tab-width 4)
+            (setq indent-tabs-mode nil)
             (linum-mode 1)
             (fci-mode 0)
             ))
