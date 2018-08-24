@@ -43,9 +43,10 @@
                                    (substatement          . +) ;; To make namespace indentation work
                                    (inclass               . +) ;; To make namespace indentation work
                                    (arglist-cont-nonempty . +)
-                                   (statement-cont        . (add c-lineup-math
-                                                                 c-lineup-cascaded-calls
-                                                                 c-lineup-streamop))
+                                   (statement-cont        . (first c-lineup-math
+                                                                   c-lineup-cascaded-calls
+                                                                   +))
+                                   (inher-cont            . c-lineup-multi-inher)
                                    ))))
 (setq-default c-default-style "custom-c-code-style")
 ;; Associate .inl files with c++ mode
