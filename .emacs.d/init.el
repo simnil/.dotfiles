@@ -18,6 +18,7 @@
 (require 'custom-lisp-functions)
 (require 'python)
 (require 'server)
+(require 'rtags)
 
 
 ;; Default settings
@@ -35,6 +36,8 @@
 (tool-bar-mode -1)
 ;; Activate vdiff shortcuts
 (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
+;; Enable rtags shortcuts
+(rtags-enable-standard-keybindings)
 ;; C/C++ indentation and code style
 (c-add-style "custom-c-code-style"
              '("stroustrup" ;; Inherit from Stroustrup indentation style
@@ -78,6 +81,7 @@
             (show-paren-mode 1)
             (linum-mode 1)
             (fci-mode 1)
+            (flycheck-mode 1)
             ))
 
 ;; CMake mode
@@ -88,6 +92,7 @@
             (setq indent-tabs-mode nil)
             (linum-mode 1)
             (fci-mode 0)
+            (flycheck-mode 1)
             ))
 
 ;; Emacs lisp mode
@@ -99,6 +104,7 @@
             (show-trailing-whitespace)
             (electric-pair-mode 1)
             (show-paren-mode 1)
+            (flycheck-mode 1)
             ))
 
 ;; Python mode
@@ -111,6 +117,7 @@
             (fci-mode 1)
             (electric-pair-mode 1)
             (show-paren-mode 1)
+            (flycheck-mode 1)
             ))
 
 ;; Shell mode
@@ -138,6 +145,10 @@
       (server-start))
 
 
+;; Start cmake-ide
+(cmake-ide-setup)
+
+
 ;; Automatically generated code telling emacs to "trust" certain themes
 ;; |-->
 (custom-set-variables
@@ -150,7 +161,7 @@
     ("1e67765ecb4e53df20a96fb708a8601f6d7c8f02edb09d16c838e465ebe7f51b" "65d9573b64ec94844f95e6055fe7a82451215f551c45275ca5b78653d505bc42" "2b6bd2ebad907ee42b3ffefa4831f348e3652ea8245570cdda67f0034f07db93" "7f3ef7724515515443f961ef87fee655750512473b1f5bf890e2dc7e065f240c" "7feeed063855b06836e0262f77f5c6d3f415159a98a9676d549bfeb6c49637c4" default)))
  '(package-selected-packages
    (quote
-    (company flycheck monokai-theme paganini-theme vdiff-magit vdiff color-theme fill-column-indicator hemisu-theme gruvbox-theme))))
+    (cmake-ide company-rtags flycheck-rtags rtags company flycheck monokai-theme paganini-theme vdiff-magit vdiff color-theme fill-column-indicator hemisu-theme gruvbox-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
