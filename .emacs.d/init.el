@@ -136,6 +136,20 @@
             (flycheck-mode 1)
             ))
 
+;; Shell script mode
+;; -----------------
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq tab-width 4)
+            (show-trailing-whitespace)
+            (linum-mode 1)
+            (fci-mode 1)
+            (electric-pair-mode 1)
+            (show-paren-mode 1)
+            (flycheck-mode 1)
+            ))
+
 ;; Shell mode
 ;; ----------
 (add-hook 'shell-mode-hook
