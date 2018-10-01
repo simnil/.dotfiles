@@ -77,7 +77,6 @@
             (setq indent-tabs-mode nil)
             (show-trailing-whitespace)
             (setq fill-column 80)
-            (setq column-number-mode t)
             (electric-pair-mode 1)
             (show-paren-mode 1)
             (linum-mode 1)
