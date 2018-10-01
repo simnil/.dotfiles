@@ -14,6 +14,7 @@
 (package-initialize)
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'whitespace)
+(require 'linum)
 (require 'vdiff)
 (require 'custom-lisp-functions)
 (require 'python)
@@ -104,6 +105,21 @@
             (show-trailing-whitespace)
             (electric-pair-mode 1)
             (show-paren-mode 1)
+            (flycheck-mode 1)
+            ))
+
+;; Javascript mode
+;; ---------------
+(add-hook 'js-mode-hook
+          (lambda ()
+            (setq tab-width 4)
+            (setq indent-tabs-mode nil)
+            (show-trailing-whitespace)
+            (setq fill-column 80)
+            (electric-pair-mode 1)
+            (show-paren-mode 1)
+            (linum-mode 1)
+            (fci-mode 1)
             (flycheck-mode 1)
             ))
 
