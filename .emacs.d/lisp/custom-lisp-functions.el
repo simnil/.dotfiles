@@ -139,4 +139,7 @@
 (defun gruvbox ()
   (interactive)
   (load-theme 'gruvbox-dark-medium t))
+(defun mustang ()
+  (interactive)
+  (load-theme 'mustang t))
 ;; ------------------------------------------
