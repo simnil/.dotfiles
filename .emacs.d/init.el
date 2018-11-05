@@ -45,14 +45,13 @@
 (c-add-style "custom-c-code-style"
              '("stroustrup" ;; Inherit from Stroustrup indentation style
                (c-basic-offset  . 4)
-               (c-offsets-alist . ((innamespace           . 0) ;; Don't indent namespaces
-                                   (substatement          . +) ;; To make namespace indentation work
-                                   (inclass               . +) ;; To make namespace indentation work
+               (c-offsets-alist . ((innamespace           . 0)
+                                   (inline-open           . 0)
                                    (arglist-cont-nonempty . +)
+                                   (inher-cont            . c-lineup-multi-inher)
                                    (statement-cont        . (first c-lineup-math
                                                                    c-lineup-cascaded-calls
                                                                    +))
-                                   (inher-cont            . c-lineup-multi-inher)
                                    ))))
 (setq-default c-default-style "custom-c-code-style")
 ;; Associate .inl files with c++ mode
