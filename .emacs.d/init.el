@@ -66,6 +66,7 @@
 (global-set-key (kbd "C-c u") 'underline-line)
 ;; Bind M-j to join next line with current one
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
+(define-key c++-mode-map (kbd "M-j") nil)
 
 
 ;; Major mode hooks
