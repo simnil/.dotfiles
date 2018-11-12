@@ -6,7 +6,7 @@
 
 
 (defun fill-to-col (char col)
-  "Inserts character 'char' forward up to column 'col'"
+  "Insert character 'CHAR' forward up to column 'COL'."
   (interactive "cChar: \nnColumn: ")
   (insert (make-string
            (max 0
@@ -15,7 +15,7 @@
 
 
 (defun col-insert (char col)
-  "Inserts character 'char' at column 'col'"
+  "Insert character 'CHAR' at column 'COL'."
   (interactive "cChar: \nnColumn: ")
   (if (> (current-column) col)
       (progn
@@ -34,7 +34,7 @@
 
 
 (defun col-replace (char col)
-  "Replaces character at column 'col' with 'char'"
+  "Replace character at column 'COL' with 'CHAR'."
   (interactive "cChar: \nnColumn: ")
   (progn
     (col-insert char col)
@@ -46,7 +46,7 @@
 
 
 (defun goto-column (col)
-  "Places marker at column 'col' on current line. Appends spaces to end of line if needed"
+  "Place marker at column 'COL' on current line.  Append spaces to end of line if needed."
   (interactive "nGoto column: ")
   (let ((line-length (- (line-end-position) (line-beginning-position))))
     (if (< col line-length)
@@ -59,7 +59,7 @@
 
 
 (defun show-trailing-whitespace ()
-  "Show trailing whitespace characters in buffer"
+  "Show trailing whitespace characters in buffer."
   (interactive)
   (progn
     (whitespace-mode 0)
@@ -68,16 +68,18 @@
 
 
 (defun show-all-whitespace ()
-  "Show all (or whatever is default for whitespace-style) whitespace characters"
+  "Show all (or whatever is default for whitespace-style) whitespace characters."
   (interactive)
   (progn
     (whitespace-mode 0)
-    (setq whitespace-style '(face tabs spaces trailing lines space-before-tab newline indentation empty space-after-tab space-mark tab-mark ...))
+    (setq whitespace-style '(face tabs spaces trailing lines space-before-tab
+                                  newline indentation empty space-after-tab
+                                  space-mark tab-mark ...))
     (whitespace-mode 1)))
 
 
 (defun remove-tab ()
-  "Removes one tab or 'tab-width' whitespaces from the current line"
+  "Remove one tab or 'TAB-WIDTH' whitespaces from the current line."
   (interactive)
   (save-excursion
     (save-match-data
@@ -88,35 +90,33 @@
         (replace-match "")))))
 
 
-;; Taken from whattheemacsd.com ("rotate-windows")
+;; Originally taken from whattheemacsd.com ("rotate-windows").
+;; The code has been modified.
 (defun swap-windows ()
-  "Swaps buffers between windows"
+  "Swap buffers between windows."
   (interactive)
-  (cond ((not (> (count-windows) 1))
-         (message "You can't swap a single window!"))
-        (t
-         (setq i 1)
-         (setq num-windows (count-windows))
-         (while (< i num-windows)
-           (let* (
-                  (w1 (elt (window-list) i))
-                  (w2 (elt (window-list) (+ (% i num-windows) 1)))
+  (if (<= (count-windows) 1)
+      (message "You can't swap a single window!")
+    (let ((i 1)
+          (num-windows (count-windows)))
+      (while (< i num-windows)
+        (let* ((w1 (elt (window-list) i))
+               (w2 (elt (window-list) (+ (% i num-windows) 1)))
 
-                  (b1 (window-buffer w1))
-                  (b2 (window-buffer w2))
+               (b1 (window-buffer w1))
+               (b2 (window-buffer w2))
 
-                  (s1 (window-start w1))
-                  (s2 (window-start w2))
-                  )
-             (set-window-buffer w1 b2)
-             (set-window-buffer w2 b1)
-             (set-window-start w1 s2)
-             (set-window-start w2 s1)
-             (setq i (1+ i)))))))
+               (s1 (window-start w1))
+               (s2 (window-start w2)))
+          (set-window-buffer w1 b2)
+          (set-window-buffer w2 b1)
+          (set-window-start w1 s2)
+          (set-window-start w2 s1)
+          (setq i (1+ i)))))))
 
 
 (defun underline-line (char)
-  "Inserts a line below the current one, underlining it with 'char' characters"
+  "Insert a line below the current one, underlining it with 'CHAR' characters."
   (interactive "cCharacter: ")
   (progn
     (end-of-line)
@@ -131,15 +131,19 @@
 ;; Functions for conveniently switching theme
 ;; ------------------------------------------
 (defun monokai ()
+  "Switch to monokai theme."
   (interactive)
   (load-theme 'monokai t))
 (defun paganini ()
+  "Switch to paganini theme."
   (interactive)
   (load-theme 'paganini t))
 (defun gruvbox ()
+  "Switch to gruvbox theme."
   (interactive)
   (load-theme 'gruvbox-dark-medium t))
 (defun mustang ()
+  "Switch to mustang theme."
   (interactive)
   (load-theme 'mustang t))
 ;; ------------------------------------------

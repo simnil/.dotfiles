@@ -12,7 +12,6 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
-(add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'whitespace)
 (require 'linum)
 (require 'vdiff)
@@ -20,6 +19,8 @@
 (require 'server)
 (require 'rtags)
 (require 'powerline)
+
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'custom-lisp-functions)
 
 
@@ -71,6 +72,7 @@
 
 ;; Major mode hooks
 ;; ================
+
 ;; C/C++ mode
 ;; ----------
 (add-hook 'c++-mode-hook
