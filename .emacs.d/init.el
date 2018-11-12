@@ -62,7 +62,8 @@
 (global-set-key (kbd "C-<tab>") 'indent-relative)
 (global-set-key (kbd "<backtab>") 'remove-tab)
 (global-set-key (kbd "M-g C-g") 'goto-column)
-(global-set-key (kbd "C-c u") 'underline-line)
+(global-set-key (kbd "C-c u") (lambda () (interactive) (underline-line ?-)))
+(global-set-key (kbd "C-c U") (lambda () (interactive) (underline-line ?=)))
 ;; Bind M-j to join next line with current one
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 (define-key c++-mode-map (kbd "M-j") nil)

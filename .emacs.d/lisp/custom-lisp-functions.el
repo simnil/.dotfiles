@@ -115,9 +115,9 @@
              (setq i (1+ i)))))))
 
 
-(defun underline-line ()
-  "Inserts a line below the current one, underlining it with '-' characters"
-  (interactive)
+(defun underline-line (char)
+  "Inserts a line below the current one, underlining it with 'char' characters"
+  (interactive "cCharacter: ")
   (progn
     (end-of-line)
     (let ((line-length (current-column)))
@@ -125,7 +125,7 @@
                    "c++-mode")
           (c-indent-new-comment-line)
         (indent-new-comment-line))
-      (fill-to-col ?- line-length))))
+      (fill-to-col char line-length))))
 
 
 ;; Functions for conveniently switching theme
