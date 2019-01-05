@@ -44,7 +44,7 @@
 ;; Enable rtags shortcuts
 (rtags-enable-standard-keybindings)
 ;; C/C++ indentation and code style
-(c-add-style "custom-c-code-style"
+(c-add-style "custom-code-style"
              '("stroustrup" ;; Inherit from Stroustrup indentation style
                (c-basic-offset  . 4)
                (c-offsets-alist . ((innamespace           . 0)
@@ -55,7 +55,11 @@
                                                                    c-lineup-cascaded-calls
                                                                    +))
                                    ))))
-(setq-default c-default-style "custom-c-code-style")
+(c-add-style "custom-line-up-args"
+             '("custom-code-style"
+               (c-offsets-alist . ((arglist-cont-nonempty . c-lineup-arglist)
+                                   ))))
+(setq-default c-default-style "custom-code-style")
 ;; Associate .inl files with c++ mode
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
@@ -78,7 +82,6 @@
 ;; ----------
 (add-hook 'c++-mode-hook
           (lambda ()
-            (c-set-style "custom-c-code-style")
             (setq tab-width 4)
             (setq indent-tabs-mode nil)
             (show-trailing-whitespace)
