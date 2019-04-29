@@ -29,7 +29,7 @@ _ps1_suffix()
         fi
 
         if [[ -n $TERM && $TERM != dumb ]]; then
-            local format_str=' \[\033[33m\]{ %s }\[\033[00m\] '
+            local format_str=' \[\033[33m\]{ %s }\[\033[39m\] '
         else
             local format_str=' { %s } '
         fi
