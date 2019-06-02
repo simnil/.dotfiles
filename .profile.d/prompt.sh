@@ -28,6 +28,11 @@ _ps1_suffix()
             fi
         fi
 
+        local work_tree_modifications=$(git status --porcelain)
+        if [[ -n ${work_tree_modifications} ]]; then
+            suffix+=('𝚫') # U+1D759
+        fi
+
         if [[ -n $TERM && $TERM != dumb ]]; then
             local format_str=' \[\033[33m\]{ %s }\[\033[39m\] '
         else
