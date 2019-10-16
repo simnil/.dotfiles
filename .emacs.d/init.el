@@ -38,6 +38,7 @@
 (setq-default column-number-mode t)
 (setq-default vdiff-auto-refine t)
 (setq-default ring-bell-function 'ignore)
+(setq-default make-backup-files nil)
 (tool-bar-mode -1)
 ;; Activate vdiff shortcuts
 (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
