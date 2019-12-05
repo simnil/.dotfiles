@@ -1,7 +1,7 @@
 _ps1_prefix()
 {
     declare -a prefix
-    if (( ${_INTERACTIVE_BASH_DEPTH} > 1 )); then
+    if (( ${_INTERACTIVE_BASH_DEPTH:-0} > 1 )); then
         prefix+=("bash+${_INTERACTIVE_BASH_DEPTH}")
     fi
 
@@ -58,4 +58,6 @@ _reset_ps1()
 }
 
 PROMPT_COMMAND=_reset_ps1
-_reset_ps1
+if [[ -n $PS1 ]]; then
+    _reset_ps1
+fi
