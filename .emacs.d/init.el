@@ -12,15 +12,15 @@
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
 (package-initialize)
-(require 'whitespace)
-(require 'linum)
-(require 'vdiff)
-(require 'python)
-(require 'server)
-(require 'rtags)
-(require 'powerline)
 (require 'cmake-mode)
+(require 'linum)
 (require 'org-bullets)
+(require 'powerline)
+(require 'python)
+(require 'rtags)
+(require 'server)
+(require 'vdiff)
+(require 'whitespace)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (require 'custom-lisp-functions)
@@ -28,11 +28,11 @@
 
 ;; Default settings
 ;; ----------------
-;; Set default theme
 (load-theme 'paganini t)
 (powerline-default-theme)
 (show-trailing-whitespace)
-;; General default settings
+(global-linum-mode 1)
+(tool-bar-mode -1)
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (setq-default fill-column 95)
@@ -40,16 +40,14 @@
 (setq-default vdiff-auto-refine t)
 (setq-default ring-bell-function 'ignore)
 (setq-default make-backup-files nil)
-(tool-bar-mode -1)
 ;; Use Dejavu Sans Mono if default font cannot display char
 (set-fontset-font "fontset-default" 'unicode (font-spec :name "Dejavu Sans Mono"))
-;; Activate vdiff shortcuts
-(define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
-;; Enable rtags shortcuts
+(define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map) ; Activate vdiff shortcuts
 (rtags-enable-standard-keybindings)
+
 ;; C/C++ indentation and code style
 (c-add-style "custom-code-style"
-             '("stroustrup" ;; Inherit from Stroustrup indentation style
+             '("stroustrup" ; Inherit from Stroustrup indentation style
                (c-basic-offset  . 4)
                (c-offsets-alist . ((innamespace           . 0)
                                    (inline-open           . 0)
@@ -64,8 +62,8 @@
                (c-offsets-alist . ((arglist-cont-nonempty . c-lineup-arglist)
                                    ))))
 (setq-default c-default-style "custom-line-up-args")
-;; Associate .inl files with c++ mode
-(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode)) ; Associate .inl files with c++ mode
+
 
 ;; Custom keybindings
 ;; ------------------
@@ -80,106 +78,71 @@
 
 
 ;; Major mode hooks
-;; ================
-
-;; C/C++ mode
-;; ----------
+;; ----------------
 (add-hook 'c++-mode-hook
           (lambda ()
             (setq tab-width 4)
             (setq indent-tabs-mode nil)
-            (show-trailing-whitespace)
             (setq fill-column 95)
             (electric-pair-mode 1)
             (show-paren-mode 1)
-            (linum-mode 1)
             (fci-mode 1)
             (flycheck-mode 1)
             ))
-
-;; CMake mode
-;; ----------
 (add-hook 'cmake-mode-hook
           (lambda ()
             (setq cmake-tab-width 2)
             (setq indent-tabs-mode nil)
-            (linum-mode 1)
             (fci-mode 0)
             (flycheck-mode 1)
             ))
-
-;; Emacs lisp mode
-;; ---------------
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (linum-mode 1)
             (fci-mode 0)
-            (show-trailing-whitespace)
             (electric-pair-mode 1)
             (show-paren-mode 1)
             (flycheck-mode 1)
             ))
-
-;; Org mode
-;; --------
 (add-hook 'org-mode-hook
           (lambda ()
             (org-bullets-mode 1)
-            (linum-mode 1)
             ))
-
-;; Javascript mode
-;; ---------------
 (add-hook 'js-mode-hook
           (lambda ()
             (setq tab-width 4)
             (setq indent-tabs-mode nil)
-            (show-trailing-whitespace)
             (setq fill-column 95)
             (electric-pair-mode 1)
             (show-paren-mode 1)
-            (linum-mode 1)
             (fci-mode 1)
             (flycheck-mode 1)
             ))
-
-;; Python mode
-;; -----------
 (add-hook 'python-mode-hook
           (lambda ()
             (setq indent-tabs-mode nil)
             (setq tab-width 4)
-            (linum-mode 1)
             (fci-mode 1)
             (electric-pair-mode 1)
             (show-paren-mode 1)
             (flycheck-mode 1)
             ))
-
-;; Shell script mode
-;; -----------------
-(add-hook 'sh-mode-hook
+(add-hook 'sh-mode-hook ; shell script mode
           (lambda ()
             (setq indent-tabs-mode nil)
             (setq tab-width 4)
-            (show-trailing-whitespace)
-            (linum-mode 1)
             (fci-mode 1)
             (electric-pair-mode 1)
             (show-paren-mode 1)
             (flycheck-mode 1)
             ))
-
-;; Shell mode
-;; ----------
-(add-hook 'shell-mode-hook
+(add-hook 'shell-mode-hook ; interactive shell mode
           (lambda() (add-hook
                      'comint-output-filter-functions
                      'python-pdbtrack-comint-output-filter-function t)))
 
 
 ;; Other hooks
-;; ===========
+;; -----------
 (add-hook 'before-save-hook
           'delete-trailing-whitespace)
 ;; Don't automatically enable electric indent mode
@@ -194,8 +157,6 @@
          (not (server-running-p)))
       (server-start))
 
-
-;; Start cmake-ide
 (cmake-ide-setup)
 
 
