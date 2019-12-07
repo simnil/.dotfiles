@@ -1,9 +1,20 @@
-                    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-                    ;; Fridgeton's custom lisp functions ;;
-                    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; custom-lisp-functions.el --- Miscellaneous utility functions
 
-(provide 'custom-lisp-functions)
+;; Author: Simon Nilsson
 
+;; Feel free to use any of this code in your own setup as if it was your own,
+;; UNLESS I have provided a source for it (modified or not). Then you should
+;; provide a source too, to not misrepresent someone else's work.
+
+;;; Commentary:
+;; This "package" contains various utility functions I use in my Emacs setup.
+;; It's meant to be loaded from .emacs.d/init.el file (or similar) with
+;; something like:
+;;
+;;   (add-to-list 'load-path "~/.emacs.d/lisp")
+;;   (require 'custom-lisp-functions)
+
+;;; Code:
 
 (defun fill-to-col (char col)
   "Insert character 'CHAR' forward up to column 'COL'."
@@ -74,7 +85,7 @@
     (whitespace-mode 0)
     (setq whitespace-style '(face tabs spaces trailing lines space-before-tab
                                   newline indentation empty space-after-tab
-                                  space-mark tab-mark ...))
+                                  space-mark tab-mark newline-mark))
     (whitespace-mode 1)))
 
 
@@ -147,3 +158,6 @@
   (interactive)
   (load-theme 'mustang t))
 ;; ------------------------------------------
+
+(provide 'custom-lisp-functions)
+;;; custom-lisp-functions ends here
