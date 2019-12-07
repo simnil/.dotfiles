@@ -30,7 +30,7 @@ _ps1_suffix()
 
         local work_tree_modifications=$(git status --porcelain)
         if [[ -n ${work_tree_modifications} ]]; then
-            suffix+=('𝚫') # U+1D759
+            suffix+=('𝚫') # U+1D6AB
         fi
 
         if [[ -n $TERM && $TERM != dumb ]]; then
