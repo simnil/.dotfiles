@@ -42,7 +42,8 @@
 (setq-default ring-bell-function 'ignore)
 (setq-default make-backup-files nil)
 ;; Use Dejavu Sans Mono if default font cannot display char
-(set-fontset-font "fontset-default" 'unicode (font-spec :name "Dejavu Sans Mono"))
+(set-fontset-font "fontset-default" nil (font-spec :name "Dejavu Sans Mono")
+                  nil 'append)
 (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map) ; Activate vdiff shortcuts
 (rtags-enable-standard-keybindings)
 
@@ -64,6 +65,25 @@
                                    ))))
 (setq-default c-default-style "custom-line-up-args")
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode)) ; Associate .inl files with c++ mode
+
+
+;; Org mode
+;; --------
+(org-babel-do-load-languages 'org-babel-load-languages
+                             '((python . t)
+                               (shell  . t) ; includes bash
+                               (C      . t) ; includes C++ and D
+                               ))
+(setq-default org-babel-python-command "python3")
+(setq-default org-confirm-babel-evaluate nil)
+;; Use Dejavu Sans Mono for these specific ranges of unicode points
+(set-fontset-font "fontset-default" '(#x25A0 . #x25FF) (font-spec :name "Dejavu Sans Mono"))
+(setq-default org-bullets-bullet-list '("◉" "○" "◈" "◇")) ; U+25C9, U+25CB, U+25C6, U+25C7
+;; For some of the default bullets in org-bullets that aren't in the range above
+(set-fontset-font "fontset-default" '(#x273F . #x2740) (font-spec :name "Dejavu Sans Mono"))
+;; Fancier TODOs, but currently not used since they're more difficult to search and filter
+;; (setq-default org-todo-keywords
+;;               '((sequence "▢ TODO" "|" "✔ DONE" "✘ CANCELLED"))) ; U+25A2, U+2714, U+2718
 
 
 ;; Custom keybindings
