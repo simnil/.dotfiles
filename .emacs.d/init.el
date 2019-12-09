@@ -84,6 +84,23 @@
 ;; Fancier TODOs, but currently not used since they're more difficult to search and filter
 ;; (setq-default org-todo-keywords
 ;;               '((sequence "▢ TODO" "|" "✔ DONE" "✘ CANCELLED"))) ; U+25A2, U+2714, U+2718
+(setq-default org-directory "~/org")
+(setq-default shared-org-directory "~/Dropbox/orgfiles")
+(setq-default org-agenda-files (list org-directory shared-org-directory))
+(setq-default org-default-notes-file (concat org-directory "/notes.org"))
+(setq-default org-capture-templates
+              '(("t" "Task" entry
+                 (file+headline (lambda () (concat shared-org-directory "/tasks.org")) "Tasks")
+                 "* TODO %? %^G\n  %i"
+                 :empty-lines 1)
+                ("n" "Note" entry
+                 (file+headline (lambda () (concat shared-org-directory "/notes.org")) "Notes")
+                 "* %? %^G\n  Taken on: %u\n  %i"
+                 :prepend t :empty-lines 1)
+                ("j" "Journal" entry
+                 (file+datetree (lambda () (concat shared-org-directory "/journal.org")))
+                 "* %?\n  Entered on: %U\n  %i"
+                 :empty-lines 1)))
 
 
 ;; Custom keybindings
@@ -96,6 +113,8 @@
 ;; Bind M-j to join next line with current one
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 (define-key c++-mode-map (kbd "M-j") nil)
+(global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 
 ;; Major mode hooks
@@ -178,11 +197,11 @@
          (not (server-running-p)))
       (server-start))
 
+
 (cmake-ide-setup)
 
 
-;; Automatically generated code telling emacs to "trust" certain themes
-;; |-->
+;; Automatically generated code |-->
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
