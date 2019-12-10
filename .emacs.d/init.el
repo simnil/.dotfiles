@@ -123,7 +123,6 @@
 (add-hook 'c++-mode-hook
           (lambda ()
             (setq tab-width 4)
-            (setq indent-tabs-mode nil)
             (setq fill-column 95)
             (electric-pair-mode 1)
             (show-paren-mode 1)
@@ -133,13 +132,12 @@
 (add-hook 'cmake-mode-hook
           (lambda ()
             (setq cmake-tab-width 2)
-            (setq indent-tabs-mode nil)
-            (fci-mode 0)
+            (fci-mode 1)
             (flycheck-mode 1)
             ))
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (fci-mode 0)
+            (fci-mode 1)
             (electric-pair-mode 1)
             (show-paren-mode 1)
             (flycheck-mode 1)
@@ -151,7 +149,6 @@
 (add-hook 'js-mode-hook
           (lambda ()
             (setq tab-width 4)
-            (setq indent-tabs-mode nil)
             (setq fill-column 95)
             (electric-pair-mode 1)
             (show-paren-mode 1)
@@ -160,7 +157,6 @@
             ))
 (add-hook 'python-mode-hook
           (lambda ()
-            (setq indent-tabs-mode nil)
             (setq tab-width 4)
             (fci-mode 1)
             (electric-pair-mode 1)
@@ -178,7 +174,6 @@
             ))
 (add-hook 'sh-mode-hook ; shell script mode
           (lambda ()
-            (setq indent-tabs-mode nil)
             (setq tab-width 4)
             (fci-mode 1)
             (electric-pair-mode 1)
@@ -195,10 +190,6 @@
 ;; -----------
 (add-hook 'before-save-hook
           'delete-trailing-whitespace)
-;; Don't automatically enable electric indent mode
-;; (add-hook 'after-change-major-mode-hook
-;;           (lambda()
-;;             (electric-indent-mode -1)))
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 
