@@ -19,6 +19,7 @@
 (require 'powerline)
 (require 'python)
 (require 'rtags)
+(require 'rust-mode)
 (require 'server)
 (require 'vdiff)
 (require 'whitespace)
@@ -166,6 +167,15 @@
             (show-paren-mode 1)
             (flycheck-mode 1)
             ))
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (setq tab-width 4)
+            (setq fill-column 95)
+            (fci-mode 1)
+            (electric-pair-mode 1)
+            (show-paren-mode 1)
+            (flycheck-mode 1)
+            ))
 (add-hook 'sh-mode-hook ; shell script mode
           (lambda ()
             (setq indent-tabs-mode nil)
@@ -189,6 +199,7 @@
 ;; (add-hook 'after-change-major-mode-hook
 ;;           (lambda()
 ;;             (electric-indent-mode -1)))
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 
 ;; Start emacsclient server
@@ -212,7 +223,7 @@
     ("1e67765ecb4e53df20a96fb708a8601f6d7c8f02edb09d16c838e465ebe7f51b" "65d9573b64ec94844f95e6055fe7a82451215f551c45275ca5b78653d505bc42" "2b6bd2ebad907ee42b3ffefa4831f348e3652ea8245570cdda67f0034f07db93" "7f3ef7724515515443f961ef87fee655750512473b1f5bf890e2dc7e065f240c" "7feeed063855b06836e0262f77f5c6d3f415159a98a9676d549bfeb6c49637c4" default)))
  '(package-selected-packages
    (quote
-    (org-bullets gnuplot gnuplot-mode glsl-mode markdown-mode markdown-mode+ markdown-preview-mode auctex flymake-lua lua-mode cmake-mode powerline cmake-ide company-rtags flycheck-rtags rtags company flycheck mustang-theme monokai-theme paganini-theme vdiff-magit vdiff color-theme fill-column-indicator hemisu-theme gruvbox-theme))))
+    (cargo ob-rust rust-mode flycheck-rust org-bullets gnuplot gnuplot-mode glsl-mode markdown-mode markdown-mode+ markdown-preview-mode auctex flymake-lua lua-mode cmake-mode powerline cmake-ide company-rtags flycheck-rtags rtags company flycheck mustang-theme monokai-theme paganini-theme vdiff-magit vdiff color-theme fill-column-indicator hemisu-theme gruvbox-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
