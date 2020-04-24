@@ -38,6 +38,7 @@
                             (height . 50)))
 (load-theme 'paganini t)
 (powerline-default-theme)
+(visual-line-mode 1)
 (show-trailing-whitespace)
 (global-linum-mode 1)
 (tool-bar-mode -1)
