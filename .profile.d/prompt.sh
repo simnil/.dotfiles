@@ -16,8 +16,14 @@ _ps1_suffix()
     if [[ $(git rev-parse --is-inside-work-tree 2>/dev/null) ]]; then
         local repo_root=$(basename $(git rev-parse --show-toplevel))
         suffix+=("${repo_root}")
-        local branch_desc=$(git rev-parse --abbrev-ref HEAD)
-        if [[ ${branch_desc} != HEAD ]]; then
+
+        local branch_desc
+        branch_desc=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+        local branch_exit_code=$?
+
+        if [[ ${branch_exit_code} != 0 ]]; then
+            suffix+=("< no head >")
+        elif [[ ${branch_desc} != HEAD ]]; then
             suffix+=("${branch_desc}")
         else
             local tag_desc=$(git describe --tags 2>/dev/null)
