@@ -5,8 +5,18 @@ _ps1_prefix()
         prefix+=("bash+${_INTERACTIVE_BASH_DEPTH}")
     fi
 
+    if [[ -n $VIRTUAL_ENV ]]; then
+        prefix+=("$(basename "${VIRTUAL_ENV}")")
+    fi
+
+    if [[ -n $TERM && $TERM != dumb ]]; then
+        local format_str='\[\033[36m\](%s)\[\033[39m\] '
+    else
+        local format_str='(%s) '
+    fi
+
     if [[ ${prefix} ]]; then
-        (IFS=\;; printf '(%s) ' "${prefix[*]}")
+        (IFS=\;; printf "${format_str}" "${prefix[*]}")
     fi
 }
 
