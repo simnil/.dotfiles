@@ -7,3 +7,12 @@ if [[ -n $PS1 ]]; then
         export _ALREADY_IN_TMUX=true
     fi
 fi
+
+toggle_bash_depth()
+{
+    if [[ -z $_HIDE_INTERACTIVE_BASH_DEPTH ]]; then
+        export _HIDE_INTERACTIVE_BASH_DEPTH=true
+    else
+        unset _HIDE_INTERACTIVE_BASH_DEPTH
+    fi
+}

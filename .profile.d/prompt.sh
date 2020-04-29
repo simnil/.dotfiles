@@ -1,7 +1,7 @@
 _ps1_prefix()
 {
     declare -a prefix
-    if (( ${_INTERACTIVE_BASH_DEPTH:-0} > 1 )); then
+    if (( ${_INTERACTIVE_BASH_DEPTH:-0} > 1 )) && [[ -z $_HIDE_INTERACTIVE_BASH_DEPTH ]]; then
         prefix+=("bash+${_INTERACTIVE_BASH_DEPTH}")
     fi
 
