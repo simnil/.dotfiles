@@ -1,0 +1,2 @@
+export PIPENV_SHELL_FANCY=true
+export PIPENV_SKIP_LOCK=true
