@@ -61,6 +61,13 @@ _ps1_suffix()
     fi
 }
 
+_prompt_expanded_length()
+{
+    local without_unreadables=$(perl -pe 's/\\\[.*?\\\]//g' <<< "$*")
+    local expanded=${without_unreadables@P}
+    echo ${#expanded}
+}
+
 _reset_ps1()
 {
     local prefix=$(_ps1_prefix)
@@ -70,7 +77,18 @@ _reset_ps1()
     else
         local default_prompt='\u@\h:\W'
     fi
-    PS1="${prefix}${default_prompt}${suffix}$ "
+    local prompt="${prefix}${default_prompt}${suffix}"
+
+    local prompt_length="$(_prompt_expanded_length "${prompt}") + 3"
+    local max_length="0.5 * $(tput cols)"
+    local prompt_too_long=$(bc <<< "scale=2; (${prompt_length}) > (${max_length})")
+    if [[ ${prompt_too_long} = 1 ]]; then
+        local end='\n$ '
+    else
+        local end='$ '
+    fi
+
+    PS1="${prompt}${end}"
 }
 
 PROMPT_COMMAND=_reset_ps1
