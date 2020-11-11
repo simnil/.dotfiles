@@ -112,6 +112,8 @@
                  (file+datetree (lambda () (concat shared-org-directory "/journal.org")))
                  "* %?\n  Entered on: %U\n  %i"
                  :empty-lines 1)))
+(setq-default org-startup-indented t)
+(setq-default org-tags-column -90)
 
 
 ;; Custom keybindings
