@@ -101,16 +101,16 @@
 (setq-default org-default-notes-file (concat org-directory "/notes.org"))
 (setq-default org-capture-templates
               '(("t" "Task" entry
-                 (file+headline (lambda () (concat shared-org-directory "/tasks.org")) "Tasks")
-                 "* TODO %? %^G\n  %i"
+                 (file (lambda () (concat shared-org-directory "/tasks.org")))
+                 "* TODO %? %^G\n%i"
                  :empty-lines 1)
                 ("n" "Note" entry
-                 (file+headline (lambda () (concat shared-org-directory "/notes.org")) "Notes")
-                 "* %? %^G\n  Taken on: %u\n  %i"
+                 (file (lambda () (concat shared-org-directory "/notes.org")))
+                 "* %? %^G\nTaken on: %u\n%i"
                  :prepend t :empty-lines 1)
                 ("j" "Journal" entry
                  (file+datetree (lambda () (concat shared-org-directory "/journal.org")))
-                 "* %?\n  Entered on: %U\n  %i"
+                 "* %?\nEntered on: %U\n%i"
                  :empty-lines 1)))
 (setq-default org-startup-indented t)
 (setq-default org-tags-column -90)
