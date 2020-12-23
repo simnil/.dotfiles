@@ -159,6 +159,9 @@
             (org-bullets-mode 1)
             (local-set-key (kbd "C-c C-<tab>") 'org-global-cycle)
             ))
+(add-hook 'org-agenda-mode-hook
+          (lambda ()
+            (linum-mode -1)))
 (add-hook 'js-mode-hook
           (lambda ()
             (setq tab-width 4)
