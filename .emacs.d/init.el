@@ -37,6 +37,7 @@
 (setq default-frame-alist '((width  . 85)
                             (height . 50)))
 (load-theme 'paganini t)
+(set-face-foreground 'linum "#727270")
 (powerline-default-theme)
 (visual-line-mode 1)
 (show-trailing-whitespace)
