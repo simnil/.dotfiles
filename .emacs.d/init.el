@@ -15,6 +15,7 @@
 (package-initialize)
 (require 'cmake-mode)
 (require 'company)
+(require 'company-rtags)
 (require 'linum)
 (require 'org)
 (require 'org-bullets)
@@ -57,6 +58,9 @@
 (set-fontset-font "fontset-default" nil (font-spec :name "Dejavu Sans Mono")
                   nil 'append)
 (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map) ; Activate vdiff shortcuts
+
+(setq-default rtags-completions-enabled t)
+(add-to-list 'company-backends 'company-rtags)
 (rtags-enable-standard-keybindings)
 
 ;; C/C++ indentation and code style
