@@ -44,6 +44,7 @@
 (show-trailing-whitespace)
 (global-linum-mode 1)
 (tool-bar-mode -1)
+(setq-default require-final-newline t)
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 (setq-default fill-column 95)
