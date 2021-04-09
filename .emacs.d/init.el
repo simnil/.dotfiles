@@ -132,6 +132,7 @@
 ;; Bind M-j to join next line with current one
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 (define-key c++-mode-map (kbd "M-j") nil)
+(define-key c-mode-map (kbd "M-j") nil)
 (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c a") 'org-agenda)
 
@@ -146,6 +147,17 @@
             (show-paren-mode 1)
             (fci-mode 1)
             (flycheck-mode 1)
+            ))
+(add-hook 'c-mode-hook
+          (lambda ()
+            (setq tab-width 4)
+            (setq fill-column 95)
+            (electric-pair-mode 1)
+            (show-paren-mode 1)
+            (fci-mode 1)
+            (flycheck-mode 1)
+            (setq comment-start "//")
+            (setq comment-end "")
             ))
 (add-hook 'cmake-mode-hook
           (lambda ()
