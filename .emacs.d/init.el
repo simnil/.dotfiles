@@ -197,6 +197,15 @@
             (show-paren-mode 1)
             (flycheck-mode 1)
             ))
+(add-hook 'lua-mode-hook
+          (lambda ()
+            (setq lua-indent-level 2)
+            (setq fill-column 95)
+            (display-fill-column-indicator-mode)
+            (electric-pair-mode 1)
+            (show-paren-mode 1)
+            (flycheck-mode 1)
+            ))
 (add-hook 'rust-mode-hook
           (lambda ()
             (setq tab-width 4)
